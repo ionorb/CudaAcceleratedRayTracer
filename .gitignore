@@ -1,0 +1,19 @@
+*
+
+!*/
+
+
+# track this file
+
+
+!.gitignore
+!*.c*
+!*.h*
+!Makefile
+
+
+# whitelist everything in ./config/
+
+
+!config/
+!libs/minilibx-linux/*
