@@ -49,32 +49,29 @@ void	ft_copy_mem(t_mrt *mrt, t_mrt *dat)
 	(int*)ft_memcpy(mrt->obj_count, mrt->num_objs * sizeof(int));
 }
 
-t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
+t_mrt	*ft_copy_mrt(t_mrt *mrt)
 {
 	int		i;
 	t_mrt	*dat;
 
 	i = -1;
-	dat = (t_mrt*)ft_malloc(sizeof(t_mrt) * num);
-	while (++i < num)
-	{
-		ft_set_mrt(&dat[i], "unset", 0, 0);
-		dat[i].save = mrt->save;
-		dat[i].addr = mrt->addr;
-		dat[i].bpp = mrt->bpp;
-		dat[i].endi = mrt->endi;
-		dat[i].sizel = mrt->sizel;
-		dat[i].mutexs = &mrt->mutex;
-		dat[i].first = mrt->first;
-		dat[i].num_objs = mrt->num_objs;
-		dat[i].bounce = mrt->bounce;
-		dat[i].ix = mrt->ix;
-		dat[i].iy = mrt->iy;
-		dat[i].amblight = mrt->amblight;
-		dat[i].cam = mrt->cam;
-		dat[i].percent = &mrt->i;
-		ft_copy_mem(mrt, &dat[i]);
-	}
+	cudaMallocManaged(dat, sizeof(t_mrt));
+	ft_set_mrt(dat, "unset", 0, 0);
+	dat->save = mrt->save;
+	dat->addr = mrt->addr;
+	dat->bpp = mrt->bpp;
+	dat->endi = mrt->endi;
+	dat->sizel = mrt->sizel;
+	dat->mutexs = &mrt->mutex;
+	dat->first = mrt->first;
+	dat->num_objs = mrt->num_objs;
+	dat->bounce = mrt->bounce;
+	dat->ix = mrt->ix;
+	dat->iy = mrt->iy;
+	dat->amblight = mrt->amblight;
+	dat->cam = mrt->cam;
+	dat->percent = &mrt->i;
+	ft_copy_mem(mrt, dat);
 	return (dat);
 }
 

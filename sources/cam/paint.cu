@@ -22,52 +22,64 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	*ft_paint(void *data)
+void __global__ ft_paint(void *data)
 {
 	t_mrt	*mrt;
 	int		i;
 	int		j;
 	int		color;
 
+	int index = threadIdx.x + blockIdx.x * blockDim.x;
+	int stride = blockDim.x * gridDim.x;
+	(void)index;
+	(void)stride;
 	mrt = (t_mrt *)data;
 	i = 0;
-	// while (i < mrt->ix)
-	// {
-	// 	j = 0;
-	// 	ft_percentage_bar(mrt);
-	// 	while (j < mrt->iy - 1)
-	// 	{
-	// 		if (j % THREADS == mrt->i)
-	// 		{
-	// 			color = get_pixel_color(mrt, i + 1, j + 1);
-	// 			my_mlx_pixel_put(mrt, i, j, color);
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	return (NULL);
+	while (i < mrt->ix)
+	{
+		j = 0;
+		// ft_percentage_bar(mrt);
+		while (j < mrt->iy - 1)
+		{
+			color = get_pixel_color(mrt, i + 1, j + 1);
+			my_mlx_pixel_put(mrt, i, j, color);
+			j++;
+		}
+		i++;
+	}
+	// return (NULL);
 }
 
-// void	pixel_calcul(t_mrt *mrt)
-// {
-// 	int		i;
-// 	t_mrt	*dat;
+void	pixel_calcul(t_mrt *mrt)
+{
+	int deviceId;
+	int numberOfSMs;
 
-// 	i = 0;
-// 	mrt->i = 0;
-// 	dat = ft_copy_mrt(mrt, THREADS);
-// 	while (i < THREADS)
-// 	{
-// 		dat[i].i = i;
-// 		pthread_create(&mrt->threads[i], NULL, \
-// 		(void *)ft_paint, (void *)&dat[i]);
-// 		i++;
-// 	}
-// 	i = -1;
-// 	while (++i < THREADS)
-// 		pthread_join(mrt->threads[i], NULL);
-// 	if (mrt->first)
-// 		printf("\r[100%%]\n");
-// 	ft_free_mrt(dat, THREADS);
-// }
+	cudaGetDevice(&deviceId);
+	cudaDeviceGetAttribute(&numberOfSMs, cudaDevAttrMultiProcessorCount, deviceId);
+	
+	size_t threadsPerBlock = 256;
+	size_t numberOfBlocks = 32 * numberOfSMs;
+	
+	// t_mrt	*dat;
+	// dat = ft_copy_mrt(mrt);
+	
+	ft_paint<<<threadsPerBlock, numberOfBlocks>>>(mrt);
+	// int		i;
+
+	// i = 0;
+	// mrt->i = 0;
+	// while (i < THREADS)
+	// {
+	// 	dat[i].i = i;
+	// 	pthread_create(&mrt->threads[i], NULL, \
+	// 	(void *)ft_paint, (void *)&dat[i]);
+	// 	i++;
+	// }
+	// i = -1;
+	// while (++i < THREADS)
+	// 	pthread_join(mrt->threads[i], NULL);
+	// if (mrt->first)
+	// 	printf("\r[100%%]\n");
+	// ft_free_mrt(dat, THREADS);
+}

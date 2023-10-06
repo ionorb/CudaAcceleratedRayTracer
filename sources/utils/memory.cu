@@ -52,7 +52,8 @@ t_mem	*mem_new(size_t size, void *thing)
 	char	*err;
 
 	err = "Error: malloc failed\n";
-	newy = (t_mem*)malloc(sizeof(t_mem));
+	// newy = (t_mem*)malloc(sizeof(t_mem));
+	cudaMallocManaged(newy, sizeof(t_mem));
 	if (!newy)
 		return (ft_putstr_fd(err, 2), (t_mem*)NULL);
 	if (thing)
