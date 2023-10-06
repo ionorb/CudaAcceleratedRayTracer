@@ -151,12 +151,12 @@ __device__ __host__
 int			ft_free_one(t_mem *mem, void *thing);
 __device__ __host__
 void		ft_quit(int status);
-__device__ __host__
-void		clean_memory(void);
+// __device__ __host__
+// void		clean_memory(void);
 __device__ __host__
 void		ft_add_to_mem(void *thing);
-__device__ __host__
-void		ft_close(int fd);
+// __device__ __host__
+// void		ft_close(int fd);
 __device__ __host__
 void		ft_close_fd(int *fd);
 __device__ __host__

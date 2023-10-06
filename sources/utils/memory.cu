@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
 void	*ft_liberate(t_mem *mem, int type)
 {
@@ -19,10 +19,10 @@ void	*ft_liberate(t_mem *mem, int type)
 	while (mem)
 	{
 		if (mem->ptr)
-			free(mem->ptr);
+			cudaFree(mem->ptr);
 		prev = mem;
 		mem = mem->next;
-		free(prev);
+		cudaFree(prev);
 	}
 	if (type == EXIT_ERROR)
 		exit(1);
@@ -53,7 +53,7 @@ t_mem	*mem_new(size_t size, void *thing)
 
 	err = "Error: malloc failed\n";
 	// newy = (t_mem*)malloc(sizeof(t_mem));
-	cudaMallocManaged(newy, sizeof(t_mem));
+	cudaMallocManaged((void **)&newy, sizeof(t_mem));
 	if (!newy)
 		return (ft_putstr_fd(err, 2), (t_mem*)NULL);
 	if (thing)
@@ -63,7 +63,7 @@ t_mem	*mem_new(size_t size, void *thing)
 	if (!newy->ptr)
 	{
 		ft_putstr_fd(err, 2);
-		free(newy);
+		cudaFree(newy);
 		newy = NULL;
 		return (NULL);
 	}

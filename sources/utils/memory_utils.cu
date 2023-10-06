@@ -31,7 +31,7 @@ void	ft_free_mlx(void **mlx, void **win, void **img)
 	if (*mlx)
 	{
 		mlx_destroy_display(*mlx);
-		free(*mlx);
+		cudaFree(*mlx);
 	}
 }
 
@@ -50,8 +50,8 @@ int	ft_free_one(t_mem *mem, void *thing)
 		after = mem->next;
 		if (mem->ptr == thing || !mem->ptr)
 		{
-			free(mem->ptr);
-			free(mem);
+			cudaFree(mem->ptr);
+			cudaFree(mem);
 			mem = after;
 			prev->next = after;
 		}
@@ -59,7 +59,7 @@ int	ft_free_one(t_mem *mem, void *thing)
 		mem = mem->next;
 	}
 	if (mem && mem->ptr == thing)
-		return (free(mem->ptr), free(mem), prev->next = NULL, 0);
+		return (cudaFree(mem->ptr), cudaFree(mem), prev->next = NULL, 0);
 	return (0);
 }
 

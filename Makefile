@@ -6,7 +6,7 @@
 #    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/10/01 23:25:01 by yoel             ###   ########.fr        #
+#    Updated: 2023/10/06 18:27:10 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 CC      = gcc
 NVCC    = nvcc
 
-NVCCFLAGS = -g -G
+NVCCFLAGS = -g -G -rdc=true
 # FLAGS  = -Wall -Wextra -pthread -g3
 # FLAGS  += -Ofast -flto
 ### Executable ###
