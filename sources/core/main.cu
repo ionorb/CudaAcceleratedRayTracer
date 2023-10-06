@@ -34,7 +34,7 @@ void	render_scene(t_mrt *mrt)
 	set_all_cam_values(&mrt->cam, mrt->ix);
 	if (mrt->first)
 		write(1, "calculating pixel values...\n", 29);
-	// pixel_calcul(mrt);
+	pixel_calcul(mrt);
 	if (mrt->save)
 		write_to_ppm(mrt);
 	if (!mrt->save)

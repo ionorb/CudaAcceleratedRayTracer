@@ -18,13 +18,13 @@ int	ft_init_mlx(t_mrt *mrt)
 	{
 		mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
 		if (!mrt->win)
-			return (mlx_destroy_display(mrt->mlx), cudaFree(mrt->mlx), \
+			return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
 			ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	}
 	mrt->img = mlx_new_image(mrt->mlx, mrt->ix, mrt->iy);
 	if (!mrt->img)
 		return (mlx_destroy_window(mrt->mlx, mrt->win), \
-		mlx_destroy_display(mrt->mlx), cudaFree(mrt->mlx), \
+		mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
 		ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
 	if (!mrt->addr)

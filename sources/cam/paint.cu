@@ -35,6 +35,10 @@ void __global__ ft_paint(void *data)
 	(void)stride;
 	mrt = (t_mrt *)data;
 	i = 0;
+	printf("\nHELLO: %d\n", index);
+	printf("mrt: %p\n", mrt);
+	// mrt->ix = 1000;
+	// mrt->iy = 1800;
 	while (i < mrt->ix)
 	{
 		j = 0;
@@ -58,13 +62,15 @@ void	pixel_calcul(t_mrt *mrt)
 	cudaGetDevice(&deviceId);
 	cudaDeviceGetAttribute(&numberOfSMs, cudaDevAttrMultiProcessorCount, deviceId);
 	
-	size_t threadsPerBlock = 256;
-	size_t numberOfBlocks = 32 * numberOfSMs;
+	size_t threadsPerBlock = 1;//256;
+	size_t numberOfBlocks = 1;//32 * numberOfSMs;
 	
 	// t_mrt	*dat;
 	// dat = ft_copy_mrt(mrt);
+	// printf("\nHELLO\n");
 	
 	ft_paint<<<threadsPerBlock, numberOfBlocks>>>(mrt);
+	cudaDeviceSynchronize();
 	// int		i;
 
 	// i = 0;

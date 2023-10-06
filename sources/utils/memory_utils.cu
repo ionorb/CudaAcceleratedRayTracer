@@ -31,7 +31,8 @@ void	ft_free_mlx(void **mlx, void **win, void **img)
 	if (*mlx)
 	{
 		mlx_destroy_display(*mlx);
-		cudaFree(*mlx);
+		// cudaFree(*mlx);
+		free(*mlx);
 	}
 }
 

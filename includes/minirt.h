@@ -343,7 +343,7 @@ __device__ __host__
 t_vec		screen_pxl_by_indx(t_mrt *mrt, t_cam *cam, int i, int j);
 __device__ __host__
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
-__device__ __host__
+__host__
 void		pixel_calcul(t_mrt *mrt);
 __device__ __host__
 int			get_pixel_color(t_mrt *mrt, int x, int y);

@@ -6,14 +6,14 @@
 #    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 18:26:55 by gamoreno          #+#    #+#              #
-#    Updated: 2023/10/01 23:17:05 by yoel             ###   ########.fr        #
+#    Updated: 2023/10/06 18:46:01 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC	= nvcc
-CFLAGS	= -g -G#-Wall -Wextra -Werror -g3 -I.
+CFLAGS	= -g -G -rdc=true #-Wall -Wextra -Werror -g3 -I.
 
 ### Executable ###
 

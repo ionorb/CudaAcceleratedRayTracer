@@ -50,16 +50,23 @@ t_mem	*mem_new(size_t size, void *thing)
 {
 	t_mem	*newy;
 	char	*err;
+	cudaError_t cudaErr;
 
 	err = "Error: malloc failed\n";
 	// newy = (t_mem*)malloc(sizeof(t_mem));
-	cudaMallocManaged((void **)&newy, sizeof(t_mem));
+	cudaErr = cudaMallocManaged((void **)&newy, sizeof(t_mem));
 	if (!newy)
+	{
+		printf("cudaErr: %s\n", cudaGetErrorString(cudaErr));
 		return (ft_putstr_fd(err, 2), (t_mem*)NULL);
+	}
 	if (thing)
 		newy->ptr = thing;
 	else
-		newy->ptr = malloc(size);
+	{
+		cudaMallocManaged(&newy->ptr, size);
+		// newy->ptr = malloc(size);
+	}
 	if (!newy->ptr)
 	{
 		ft_putstr_fd(err, 2);
