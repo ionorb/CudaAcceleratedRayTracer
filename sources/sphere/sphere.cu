@@ -93,7 +93,7 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 				vec_sum(point, scal_vec(c, dir))), \
 				mrt->sphere[i].option, 0, \
 				cam_in_sph(mrt, i, new_cam)};
-				ctrl->color = get_sphere_texture(mrt, *ctrl);
+				// ctrl->color = get_sphere_texture(mrt, *ctrl);
 			}
 		}
 	}

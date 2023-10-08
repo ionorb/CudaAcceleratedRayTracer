@@ -113,7 +113,7 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), \
 			get_cone_color(mrt, i, newy, ctr), mrt->cone[i].option, \
 			ctr.cap_ctrl, cam_in_cone(mrt, i, newy[0], tang)};
-			ctrl->color = get_cone_texture(mrt, *ctrl);
+			// ctrl->color = get_cone_texture(mrt, *ctrl);
 		}
 	}
 }

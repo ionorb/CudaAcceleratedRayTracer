@@ -35,6 +35,8 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 	init_some_mrt_values(mrt, file);
 	mrt->ix = ix;
 	mrt->iy = iy;
+	mrt->bpp = 32;
+	mrt->sizel = ix * (mrt->bpp / 8);
 	if (ix <= 0)
 		return ;
 	mrt->obj_count = (int *)ft_calloc(mrt->num_objs, sizeof(int));
