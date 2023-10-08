@@ -12,29 +12,29 @@
 
 #include "../../includes/minirt.h"
 
-void	ft_save_mlx(void *ptr, void **mlx, void **win, void **img)
-{
-	t_mrt	*mrt;
+// void	ft_save_mlx(void *ptr, void **mlx, void **win, void **img)
+// {
+// 	t_mrt	*mrt;
 
-	mrt = (t_mrt *)(ptr);
-	*mlx = mrt->mlx;
-	*win = mrt->win;
-	*img = mrt->img;
-}
+// 	mrt = (t_mrt *)(ptr);
+// 	*mlx = mrt->mlx;
+// 	*win = mrt->win;
+// 	*img = mrt->img;
+// }
 
-void	ft_free_mlx(void **mlx, void **win, void **img)
-{
-	if (*img)
-		mlx_destroy_image(*mlx, *img);
-	if (*win)
-		mlx_destroy_window(*mlx, *win);
-	if (*mlx)
-	{
-		mlx_destroy_display(*mlx);
-		// cudaFree(*mlx);
-		free(*mlx);
-	}
-}
+// void	ft_free_mlx(void **mlx, void **win, void **img)
+// {
+// 	if (*img)
+// 		mlx_destroy_image(*mlx, *img);
+// 	if (*win)
+// 		mlx_destroy_window(*mlx, *win);
+// 	if (*mlx)
+// 	{
+// 		mlx_destroy_display(*mlx);
+// 		// cudaFree(*mlx);
+// 		free(*mlx);
+// 	}
+// }
 
 int	ft_free_one(t_mem *mem, void *thing)
 {

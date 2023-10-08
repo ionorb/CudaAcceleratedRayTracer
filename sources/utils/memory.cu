@@ -92,7 +92,7 @@ void	*ft_memory(void *ptr, long long int size)
 {
 	static t_mem	*mem = NULL;
 	t_mem			*newy;
-	static void		*mlx[3];
+	// static void		*mlx[3];
 	static int		fd;
 
 	if (size == MEM_SIZE)
@@ -102,10 +102,10 @@ void	*ft_memory(void *ptr, long long int size)
 	if (ptr && size == ADD_TO_MEM)
 		return (mem = mem_addback(&mem, mem_new(0, ptr)));
 	if (size == EXIT_ERROR || size == EXIT_OK)
-		return (ft_close_fd(&fd), ft_free_mlx(&mlx[0], &mlx[1], &mlx[2]),
+		return (ft_close_fd(&fd),
 			mem = (t_mem*)ft_liberate(mem, size), (void*)NULL);
-	if (ptr && size == SAVE_MLX)
-		return (ft_save_mlx(ptr, &mlx[0], &mlx[1], &mlx[2]), (void*)NULL);
+	// if (ptr && size == SAVE_MLX)
+	// 	return (ft_save_mlx(ptr, &mlx[0], &mlx[1], &mlx[2]), (void*)NULL);
 	if (ptr && size == SAVE_FD)
 		return (fd = *(int *)ptr, (void*)NULL);
 	newy = mem_new(size, NULL);

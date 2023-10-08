@@ -38,26 +38,26 @@ void	ft_fill_mirror(char **line, t_option *option)
 	option->mirror = ft_fill_ratio(line[1]);
 }
 
-void	ft_fill_bumpmap(t_mrt *mrt, char **line, t_option *option)
-{
-	if (ft_arg_count(line) != 2)
-		ft_error("Wrong number of arguments for bumpmap", \
-		BUMP_INSTRUCTIONS, NULL);
-	option->bump_map.path = ft_fill_xpm(line[1]);
-	option->b_mp_ctrl = 1;
-	option->bump_map.img = mlx_xpm_file_to_image(mrt->mlx, \
-	option->bump_map.path, &option->bump_map.width, &option->bump_map.height);
-	if (!option->bump_map.img)
-		ft_error("Unable to open file", line[1], NULL);
-	option->bump_map.addr = mlx_get_data_addr(option->bump_map.img, \
-	&option->bump_map.bpp, &option->bump_map.sizel, &option->bump_map.endian);
-	if (!option->bump_map.addr)
-		ft_error("Unable to open file", line[1], NULL);
-	bump_to_array(&option->bump_map);
-	mlx_destroy_image(mrt->mlx, option->bump_map.img);
-	option->bump_map.addr = NULL;
-	option->bump_map.img = NULL;
-}
+// void	ft_fill_bumpmap(t_mrt *mrt, char **line, t_option *option)
+// {
+// 	if (ft_arg_count(line) != 2)
+// 		ft_error("Wrong number of arguments for bumpmap", \
+// 		BUMP_INSTRUCTIONS, NULL);
+// 	option->bump_map.path = ft_fill_xpm(line[1]);
+// 	option->b_mp_ctrl = 1;
+// 	option->bump_map.img = mlx_xpm_file_to_image(mrt->mlx, \
+// 	option->bump_map.path, &option->bump_map.width, &option->bump_map.height);
+// 	if (!option->bump_map.img)
+// 		ft_error("Unable to open file", line[1], NULL);
+// 	option->bump_map.addr = mlx_get_data_addr(option->bump_map.img, \
+// 	&option->bump_map.bpp, &option->bump_map.sizel, &option->bump_map.endian);
+// 	if (!option->bump_map.addr)
+// 		ft_error("Unable to open file", line[1], NULL);
+// 	bump_to_array(&option->bump_map);
+// 	mlx_destroy_image(mrt->mlx, option->bump_map.img);
+// 	option->bump_map.addr = NULL;
+// 	option->bump_map.img = NULL;
+// }
 
 t_option	ft_fill_options(t_mrt *mrt, t_table *table, t_rgb color)
 {
@@ -75,10 +75,10 @@ t_option	ft_fill_options(t_mrt *mrt, t_table *table, t_rgb color)
 			ft_fill_specular(table->next->line, &option);
 		if (eval_option(table->next->line[0]) == MIRROR)
 			ft_fill_mirror(table->next->line, &option);
-		if (eval_option(table->next->line[0]) == BUMPMAP)
-			ft_fill_bumpmap(mrt, table->next->line, &option);
-		if (eval_option(table->next->line[0]) == TEXTURE)
-			ft_fill_texture(mrt, table->next->line, &option);
+		// if (eval_option(table->next->line[0]) == BUMPMAP)
+		// 	ft_fill_bumpmap(mrt, table->next->line, &option);
+		// if (eval_option(table->next->line[0]) == TEXTURE)
+		// 	ft_fill_texture(mrt, table->next->line, &option);
 		table = table->next;
 	}
 	return (option);

@@ -6,7 +6,7 @@
 #    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/10/06 20:35:29 by yoel             ###   ########.fr        #
+#    Updated: 2023/10/08 20:16:29 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ PARSE_DIR	=	parse/
 PARSE		=	parsing.cu \
 				fill_objects.cu \
 				fill_options.cu \
-				fill_options2.cu \
 				parsing_utils.cu \
 				cell_filling.cu \
 				cell_filling_utils.cu \
@@ -62,6 +61,7 @@ PARSE		=	parsing.cu \
 				write_objects.cu \
 				eval_objects.cu \
 				fill_capitals.cu \
+				# fill_options2.cu \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.cu \

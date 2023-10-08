@@ -12,26 +12,26 @@
 
 #include "../../includes/minirt.h"
 
-int	ft_init_mlx(t_mrt *mrt)
-{
-	if (!mrt->save)
-	{
-		mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
-		if (!mrt->win)
-			return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
-			ft_error("Problem initializing minilibx", NULL, NULL), 1);
-	}
-	mrt->img = mlx_new_image(mrt->mlx, mrt->ix, mrt->iy);
-	if (!mrt->img)
-		return (mlx_destroy_window(mrt->mlx, mrt->win), \
-		mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
-		ft_error("Problem initializing minilibx", NULL, NULL), 1);
-	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
-	if (!mrt->addr)
-		return (ft_error("Problem initializing minilibx", NULL, NULL), 1);
-	ft_memory(mrt, SAVE_MLX);
-	return (0);
-}
+// int	ft_init_mlx(t_mrt *mrt)
+// {
+// 	if (!mrt->save)
+// 	{
+// 		mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
+// 		if (!mrt->win)
+// 			return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
+// 			ft_error("Problem initializing minilibx", NULL, NULL), 1);
+// 	}
+// 	mrt->img = mlx_new_image(mrt->mlx, mrt->ix, mrt->iy);
+// 	if (!mrt->img)
+// 		return (mlx_destroy_window(mrt->mlx, mrt->win), \
+// 		mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
+// 		ft_error("Problem initializing minilibx", NULL, NULL), 1);
+// 	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
+// 	if (!mrt->addr)
+// 		return (ft_error("Problem initializing minilibx", NULL, NULL), 1);
+// 	ft_memory(mrt, SAVE_MLX);
+// 	return (0);
+// }
 
 int	valid_rt_file(char *file, int fd)
 {
@@ -84,7 +84,8 @@ int	init_minirt(t_mrt *mrt, char **av, int ac)
 	if (!mrt->mlx)
 		return (ft_error("Problem initializing minilibx", NULL, NULL), 0);
 	ft_parse(mrt);
-	if (ft_init_mlx(mrt))
-		return (printf("Problem initializing minilibx\n"), 1);
+	cudaMallocManaged(&mrt->addr, sizeof(char) * IX * IY);
+	// if (ft_init_mlx(mrt))
+	// 	return (printf("Problem initializing minilibx\n"), 1);
 	return (0);
 }

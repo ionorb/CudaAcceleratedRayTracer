@@ -21,13 +21,13 @@ int	end_mrt(int i, void *mrt)
 	return (0);
 }
 
-int	ft_controls(t_mrt *mrt)
-{
-	mlx_hook(mrt->win, 2, 1, key_press, mrt);
-	mlx_hook(mrt->win, 17, 0, end_mrt, mrt);
-	mlx_mouse_hook(mrt->win, &mouse_press, mrt);
-	return (0);
-}
+// int	ft_controls(t_mrt *mrt)
+// {
+// 	mlx_hook(mrt->win, 2, 1, key_press, mrt);
+// 	mlx_hook(mrt->win, 17, 0, end_mrt, mrt);
+// 	mlx_mouse_hook(mrt->win, &mouse_press, mrt);
+// 	return (0);
+// }
 
 void	render_scene(t_mrt *mrt)
 {
@@ -35,14 +35,13 @@ void	render_scene(t_mrt *mrt)
 	if (mrt->first)
 		write(1, "calculating pixel values...\n", 29);
 	pixel_calcul(mrt);
-	if (mrt->save)
-		write_to_ppm(mrt);
-	if (!mrt->save)
-	{
-		mlx_clear_window(mrt->mlx, mrt->win);
-		mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-		display_strings(mrt);
-	}
+	write_to_ppm(mrt);
+	// if (!mrt->save)
+	// {
+	// 	mlx_clear_window(mrt->mlx, mrt->win);
+	// 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	// 	display_strings(mrt);
+	// }
 	if (mrt->first)
 		mrt->first = 0;
 }
@@ -63,7 +62,7 @@ int	main(int ac, char **av)
 {
 	t_mrt	mrt;
 
-	mrt.save = 0;
+	mrt.save = 1;
 	if (ac != 2 && ac != 5)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
 	if (ac == 5)
@@ -77,10 +76,7 @@ int	main(int ac, char **av)
 		return (1);
 	write(1, "done\n", 5);
 	mrt.first = 1;
-	if (mrt.save)
-		return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
-	render_scene(&mrt);
-	ft_controls(&mrt);
-	mlx_loop(mrt.mlx);
-	return (0);
+	return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
+	// ft_controls(&mrt);
+	// mlx_loop(mrt.mlx);
 }

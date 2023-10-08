@@ -16,8 +16,8 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 {
 	char	*dst;
 
-	if (!mrt->save && x < BORDER)
-		color = diminish_color(color, 0.3);
+	// if (!mrt->save && x < BORDER)
+		// color = diminish_color(color, 0.3);
 	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
 	*(unsigned int *)dst = color;
 }

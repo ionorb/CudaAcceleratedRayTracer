@@ -35,8 +35,8 @@ extern "C"
 
 //init
 int			init_minirt(t_mrt *mrt, char **av, int ac);
-__device__ __host__
-int			ft_init_mlx(t_mrt *mrt);
+// __device__ __host__
+// int			ft_init_mlx(t_mrt *mrt);
 __device__ __host__
 void		ft_reinit(t_mrt *mrt);
 __device__ __host__
@@ -159,10 +159,10 @@ void		ft_add_to_mem(void *thing);
 // void		ft_close(int fd);
 __device__ __host__
 void		ft_close_fd(int *fd);
-__device__ __host__
-void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
-__device__ __host__
-void		ft_free_mlx(void **mlx, void **win, void **img);
+// __device__ __host__
+// void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
+// __device__ __host__
+// void		ft_free_mlx(void **mlx, void **win, void **img);
 __device__ __host__
 void		ft_get_mem_size(void);
 __device__ __host__
