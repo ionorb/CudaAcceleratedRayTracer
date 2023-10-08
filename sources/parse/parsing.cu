@@ -104,6 +104,8 @@ int	ft_parse(t_mrt *mrt)
 		ft_error(INVALID_FILE, mrt->scene_path, FILE_INSTRUCTIONS);
 	table = ft_fill_table(fd, mrt->num_objs);
 	ft_close_fd(&fd);
+	for (int i = 0; i < mrt->num_objs; i++)
+		mrt->obj_count[i] = 0;
 	mrt->obj_count = ft_count_objs(table, mrt->obj_count);
 	ft_fill_objs(mrt, table, int_arrcpy(mrt->obj_count, mrt->num_objs));
 	ft_free_table(table);
