@@ -12,19 +12,19 @@
 
 #include "../../includes/minirt.h"
 
-// void	ft_percentage_bar(t_mrt *mrt)
-// {
-// 	double	percent;
+void	ft_percentage_bar(t_mrt *mrt)
+{
+	double	percent;
 
-// 	if (mrt->first)
-// 	{
-// 		pthread_mutex_lock(mrt->mutexs);
-// 		percent = (double)*mrt->percent / (mrt->ix * THREADS) * 100;
-// 		printf("\r[%.0f%%]", percent);
-// 		(*mrt->percent)++;
-// 		pthread_mutex_unlock(mrt->mutexs);
-// 	}
-// }
+	if (mrt->first)
+	{
+		//pthread_mutex_lock(mrt->mutexs);
+		percent = (double)*mrt->percent / (mrt->ix * THREADS) * 100;
+		printf("\r[%.0f%%]", percent);
+		(*mrt->percent)++;
+		//pthread_mutex_unlock(mrt->mutexs);
+	}
+}
 
 void	ft_copy_mem(t_mrt *mrt, t_mrt *dat)
 {
@@ -62,7 +62,7 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt)
 	dat->bpp = mrt->bpp;
 	dat->endi = mrt->endi;
 	dat->sizel = mrt->sizel;
-	dat->mutexs = &mrt->mutex;
+	// dat->mutexs = &mrt->mutex;
 	dat->first = mrt->first;
 	dat->num_objs = mrt->num_objs;
 	dat->bounce = mrt->bounce;

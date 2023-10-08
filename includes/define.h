@@ -14,8 +14,8 @@
 # define DEFINE_H
 # include "minirt.h"
 
-# define IX 1800
-# define IY 1000
+# define IX 180
+# define IY 100
 # define THREADS 20
 # define BORDER 150
 # define EXIT_ERROR -777
@@ -180,5 +180,11 @@ INT_MIN (2147483647)"
 # define RATIO_RANGE "Ratio must be between 0 and 1"
 # define POS_RANGE "Position must be between -1000 and 1000"
 # define SIZE_RANGE "Size must be between 0 and 1000"
+
+#define CUDA_CALL(x) do { if((x) != cudaSuccess) { \
+    printf("Error at %s:%d\n",__FILE__,__LINE__); \
+    printf("%s\n",cudaGetErrorString(x)); \
+    system("pause"); \
+    return EXIT_FAILURE;}} while(0)
 
 #endif

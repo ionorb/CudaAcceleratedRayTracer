@@ -29,10 +29,10 @@ t_rgb	pl_txt_1(t_mrt *mrt, t_inter inter, t_vec new_inter)
 		txt_coor[0] = height - 1;
 	if (txt_coor[1] > width - 1)
 		txt_coor[1] = width - 1;
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->plane[inter.index].option.texture.array \
 	[txt_coor[0]][txt_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 
@@ -54,10 +54,10 @@ t_rgb	pl_txt_2(t_mrt *mrt, t_inter inter, t_vec new_inter)
 		txt_coor[0] = height - 1;
 	if (txt_coor[1] > width - 1)
 		txt_coor[1] = width - 1;
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->plane[inter.index].option.texture.array \
 	[txt_coor[0]][txt_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 
@@ -79,10 +79,10 @@ t_rgb	pl_txt_3(t_mrt *mrt, t_inter inter, t_vec new_inter)
 		txt_coor[0] = height - 1;
 	if (txt_coor[1] > width - 1)
 		txt_coor[1] = width - 1;
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->plane[inter.index].option.texture.array \
 	[txt_coor[0]][txt_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 
@@ -105,10 +105,10 @@ t_rgb	pl_txt_4(t_mrt *mrt, t_inter inter, t_vec new_inter)
 		txt_coor[0] = height - 1;
 	if (txt_coor[1] > width - 1)
 		txt_coor[1] = width - 1;
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->plane[inter.index].option.texture.array \
 	[txt_coor[0]][txt_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 

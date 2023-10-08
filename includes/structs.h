@@ -277,8 +277,8 @@ typedef struct s_mrt
 	t_triangle		*triangle;
 	t_curr_ob		curr_obj;
 	// pthread_t		*threads;
-	pthread_mutex_t	mutex;
-	pthread_mutex_t	*mutexs;
+	// pthread_mutex_t	mutex;
+	// pthread_mutex_t	*mutexs;
 	int				i;
 	int				first;
 	int				*percent;

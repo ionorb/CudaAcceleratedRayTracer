@@ -39,12 +39,12 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 		return ;
 	mrt->obj_count = (int *)ft_calloc(mrt->num_objs, sizeof(int));
 	// mrt->threads = ft_malloc(sizeof(pthread_t) * THREADS);
-	if (pthread_mutex_init(&mrt->mutex, NULL))
-	{
-		pthread_mutex_destroy(&mrt->mutex);
-		ft_error("Failed to initialize mutex", NULL, NULL);
-	}
-	mrt->mutexs = &mrt->mutex;
+	// if (pthread_mutex_init(&mrt->mutex, NULL))
+	// {
+		// pthread_mutex_destroy(&mrt->mutex);
+		// ft_error("Failed to initialize mutex", NULL, NULL);
+	// }
+	// mrt->mutexs = &mrt->mutex;
 }
 
 void	write_to_ppm(t_mrt *mrt)

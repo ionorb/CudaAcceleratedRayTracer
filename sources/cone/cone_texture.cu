@@ -71,13 +71,13 @@ t_c_bump_val values)
 		+ (int)integer_part(c_cr.x / values.res_cap);
 		bump_coor[1] = (mrt->cone[inter.index].option.texture.width / 2) \
 		+ ((int)integer_part(c_cr.y / values.res_cap));
-		pthread_mutex_lock(mrt->mutexs);
-		pthread_mutex_unlock(mrt->mutexs);
+		//pthread_mutex_lock(mrt->mutexs);
+		//pthread_mutex_unlock(mrt->mutexs);
 	}
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->cone[inter.index].option.texture.array \
 	[bump_coor[0]][bump_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 
@@ -97,10 +97,10 @@ t_c_bump_val values)
 	bump_coor[0] = (mrt->cone[inter.index].option.texture.height - 1) \
 	- (int)integer_part((cyl_c.z + ((mrt->cone[inter.index].height) / 2)) \
 	/ res_h) % (mrt->cone[inter.index].option.texture.height - 1);
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->cone[inter.index].option.texture.array \
 	[bump_coor[0]][bump_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 

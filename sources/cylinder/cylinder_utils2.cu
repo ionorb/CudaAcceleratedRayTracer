@@ -25,10 +25,10 @@ t_c_bump_val values)
 		+ (int)integer_part(c_cr.x / values.res_cap);
 		bump_coor[1] = (mrt->cylinder[inter.index].option.bump_map.width / 2) \
 		+ ((int)integer_part(c_cr.y / values.res_cap));
-		pthread_mutex_lock(mrt->mutexs);
+		//pthread_mutex_lock(mrt->mutexs);
 		ret = bump_nrml_by_coor(&mrt->cylinder[inter.index].option, \
 		bump_coor[0], bump_coor[1], 0.4);
-		pthread_mutex_unlock(mrt->mutexs);
+		//pthread_mutex_unlock(mrt->mutexs);
 	}
 	return (ret);
 }
@@ -96,10 +96,10 @@ t_c_bump_val values)
 	bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height - 1) \
 	- (int)integer_part((cyl_c.z + ((mrt->cylinder[inter.index].height) / 2)) \
 	/ res_h) % (mrt->cylinder[inter.index].option.bump_map.height - 1);
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->cylinder[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 

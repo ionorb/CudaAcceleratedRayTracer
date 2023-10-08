@@ -63,10 +63,10 @@ t_rgb	get_sphere_texture(t_mrt *mrt, t_inter inter)
 	res[1] = (2 * PI) / (mrt->sphere[inter.index].option.texture.width - 1);
 	bump_coor[0] = (int)integer_part(new_inter.y / res[0]);
 	bump_coor[1] = (int)integer_part(new_inter.z / res[1]);
-	pthread_mutex_lock(mrt->mutexs);
+	//pthread_mutex_lock(mrt->mutexs);
 	color = convert_to_rgb(mrt->sphere[inter.index].option.texture.array \
 	[bump_coor[0]][bump_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
+	//pthread_mutex_unlock(mrt->mutexs);
 	return (color);
 }
 
