@@ -64,12 +64,14 @@ t_mem	*mem_new(size_t size, void *thing)
 		newy->ptr = thing;
 	else
 	{
-		cudaMallocManaged(&newy->ptr, size);
+		cudaErr = cudaMallocManaged(&newy->ptr, size);
 		// newy->ptr = malloc(size);
 	}
 	if (!newy->ptr)
 	{
+
 		ft_putstr_fd(err, 2);
+		printf("cudaErr: %s\n", cudaGetErrorString(cudaErr));
 		cudaFree(newy);
 		newy = NULL;
 		return (NULL);
