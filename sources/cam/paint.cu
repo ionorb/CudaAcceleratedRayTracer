@@ -50,6 +50,7 @@ void __global__ ft_paint_device(t_mrt *mrt)
 			j++;
 		}
 		i++;
+		printf("ix: %d / %d\r", i, mrt->ix);
 	}
 	// return (NULL);
 }

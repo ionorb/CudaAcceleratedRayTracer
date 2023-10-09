@@ -65,14 +65,14 @@ t_rgb	apply_lighting(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 	i = -1;
 	if (ctr->dist == -1)
 		return (ft_make_rgb(0, 0, 0));
-	reflection = ft_make_rgb(0, 0, 0);
+	// reflection = ft_make_rgb(0, 0, 0);
 	while (++i < mrt->obj_count[LIGHT])
 		color = add_color(color, \
 		get_radiance(mrt, ctr, mrt->light[i]));
-	if (ctr->option.mirror > 0 && mrt->bounce < 40)
-		reflection = mult_color(get_reflection(mrt, ctr, dir), \
-		ctr->option.mirror);
-	color = add_color(color, reflection);
+	// if (ctr->option.mirror > 0 && mrt->bounce < 40)
+	// 	reflection = mult_color(get_reflection(mrt, ctr, dir), \
+	// 	ctr->option.mirror);
+	// color = add_color(color, reflection);
 	return (add_color(color, get_ambient(ctr->color, mrt->amblight, 1)));
 }
 
