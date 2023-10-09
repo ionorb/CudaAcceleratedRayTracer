@@ -94,19 +94,19 @@ void	pixel_calcul(t_mrt *mrt)
 	CUDA_CALL(cudaGetDevice(&deviceId));
 	CUDA_CALL(cudaDeviceGetAttribute(&numberOfSMs, cudaDevAttrMultiProcessorCount, deviceId));
 	
-	size_t threadsPerBlock = 32 * 2;
-	size_t numberOfBlocks = 4 * numberOfSMs;
+	size_t threadsPerBlock = 32 * 3;
+	size_t numberOfBlocks = 5 * numberOfSMs;
 	
 	// t_mrt	*dat;
 	// init_minirt(dat, "scenes/mirror_balls.rt", 1);
 	// dat = ft_copy_mrt(mrt);
 	// printf("\nHELLO\n");
 	// CUDA_CALL(cudaMemPrefetchAsync((void *)mrt->addr, sizeof(mrt->addr), deviceId));
-	for (int i = 0; i < 10; i++)
-		ft_paint_device<<<threadsPerBlock, numberOfBlocks>>>(mrt, mrt->ix * mrt->iy);
-	CUDA_CALL(cudaGetLastError());
 	// for (int i = 0; i < 10; i++)
-		// ft_paint_host(mrt);
+		// ft_paint_device<<<threadsPerBlock, numberOfBlocks>>>(mrt, mrt->ix * mrt->iy);
+	CUDA_CALL(cudaGetLastError());
+	for (int i = 0; i < 10; i++)
+		ft_paint_host(mrt);
 	CUDA_CALL(cudaDeviceSynchronize());
 	// int		i;
 
