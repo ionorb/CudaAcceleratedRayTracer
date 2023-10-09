@@ -18,3 +18,5 @@
 !config/
 !libs/minilibx-linux/*
 !scenes/*
+!config/*
+!.vscode/*

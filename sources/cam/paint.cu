@@ -22,39 +22,39 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-// void __global__ ft_paint(void *data)
-// {
-// 	t_mrt	*mrt;
-// 	int		i;
-// 	int		j;
-// 	int		color;
+void __global__ ft_paint_device(void *data)
+{
+	t_mrt	*mrt;
+	int		i;
+	int		j;
+	int		color;
 
-// 	int index = threadIdx.x + blockIdx.x * blockDim.x;
-// 	int stride = blockDim.x * gridDim.x;
-// 	(void)index;
-// 	(void)stride;
-// 	mrt = (t_mrt *)data;
-// 	i = 0;
-// 	printf("\nHELLO: %d\n", index);
-// 	printf("mrt: %p\n", mrt);
-// 	// mrt->ix = 1000;
-// 	// mrt->iy = 1800;
-// 	while (i < mrt->ix)
-// 	{
-// 		j = 0;
-// 		// ft_percentage_bar(mrt);
-// 		while (j < mrt->iy - 1)
-// 		{
-// 			color = get_pixel_color(mrt, i + 1, j + 1);
-// 			my_mlx_pixel_put(mrt, i, j, color);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	// return (NULL);
-// }
+	int index = threadIdx.x + blockIdx.x * blockDim.x;
+	int stride = blockDim.x * gridDim.x;
+	(void)index;
+	(void)stride;
+	mrt = (t_mrt *)data;
+	i = 0;
+	printf("\nHELLO: %d\n", index);
+	printf("mrt: %p\n", mrt);
+	// mrt->ix = 1000;
+	// mrt->iy = 1800;
+	while (i < mrt->ix)
+	{
+		j = 0;
+		// ft_percentage_bar(mrt);
+		while (j < mrt->iy - 1)
+		{
+			color = get_pixel_color(mrt, i + 1, j + 1);
+			my_mlx_pixel_put(mrt, i, j, color);
+			j++;
+		}
+		i++;
+	}
+	// return (NULL);
+}
 
-void ft_paint(void *data)
+void ft_paint_host(void *data)
 {
 	t_mrt	*mrt;
 	int		i;
@@ -97,8 +97,8 @@ void	pixel_calcul(t_mrt *mrt)
 	// dat = ft_copy_mrt(mrt);
 	// printf("\nHELLO\n");
 	
-	// ft_paint<<<threadsPerBlock, numberOfBlocks>>>(mrt);
-	ft_paint(mrt);
+	ft_paint_device<<<threadsPerBlock, numberOfBlocks>>>(mrt);
+	// ft_paint_host(mrt);
 	cudaDeviceSynchronize();
 	// int		i;
 
