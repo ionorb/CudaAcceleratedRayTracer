@@ -1,0 +1,13 @@
+A	0.50 										255,255,255
+
+
+C	0,2,-3		-1,0,0          140
+L	0,20,-3					0.7				255,255,255
+
+sp  10,10,10 8 255,255,255
+bump textures/moon_float_small.xpm
+tex textures/moon_tex.xpm
+
+sp  10,10,20 8 255,255,255
+bump textures/earth_bmp.xpm
+tex textures/earth_tex.xpm

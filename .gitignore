@@ -17,3 +17,4 @@
 
 !config/
 !libs/minilibx-linux/*
+!scenes/*
