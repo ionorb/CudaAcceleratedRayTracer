@@ -26,10 +26,10 @@ NAME   = minirt
 OBJ_PATH  = objs/
 HEADER = includes/
 SRC_PATH  = sources/
-MLX = libs/minilibx-linux
+# MLX = libs/minilibx-linux
 LIBFT = libs/libft
 CUDA = -I/usr/local/cuda/include -L/usr/local/cuda/lib
-INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes $(CUDA)
+INCLUDES = -I $(HEADER) -I $(LIBFT)/includes $(CUDA) # -I $(MLX)
 
 ### Source Files ###
 CORE_DIR	=	core/
@@ -159,14 +159,14 @@ all: lib tmp $(NAME)
 
 lib:
 	@echo "$(GREEN)Creating lib files$(NOC)"
-	@make -C $(MLX)
 	@make -C $(LIBFT)
+# @make -C $(MLX)
 
 tmp:
 	@mkdir -p $(OBJ_DIRS)
 
 $(NAME): $(OBJS)
-	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -L $(LIBFT) -L $(MLX) -o $@ $^ -l:libft.a -lmlx -lXext -lX11 -lm 
+	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -L $(LIBFT) -o $@ $^ -l:libft.a -lXext -lX11 -lm 
 	@echo "$(GREEN)Project compiled succesfully$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cu
@@ -182,8 +182,8 @@ fclean:
 	@echo "$(GREEN)Cleaning all$(NOC)"
 	@rm -rf $(OBJ_PATH)
 	@rm -f $(NAME)
-	@make clean -C $(MLX)
 	@make fclean -C $(LIBFT)
+# @make clean -C $(MLX)
 
 re: fclean all
 
