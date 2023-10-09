@@ -166,7 +166,7 @@ tmp:
 	@mkdir -p $(OBJ_DIRS)
 
 $(NAME): $(OBJS)
-	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -L $(LIBFT) -o $@ $^ -l:libft.a -lXext -lX11 -lm 
+	$(NVCC) $(NVCCFLAGS) $(INCLUDES) -L $(LIBFT) -o $@ $^ -l:libft.a
 	@echo "$(GREEN)Project compiled succesfully$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cu

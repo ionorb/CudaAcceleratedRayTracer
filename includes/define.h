@@ -14,8 +14,8 @@
 # define DEFINE_H
 # include "minirt.h"
 
-# define IX 180
-# define IY 100
+# define IX 800
+# define IY 600
 # define THREADS 20
 # define BORDER 150
 # define EXIT_ERROR -777

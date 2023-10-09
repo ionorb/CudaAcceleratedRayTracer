@@ -13,10 +13,10 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-extern "C"
-{
-	#include "mlx.h"
-}
+// extern "C"
+// {
+// 	#include "mlx.h"
+// }
 #include "libft.h"
 # include "structs.h"
 # include "define.h"
