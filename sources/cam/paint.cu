@@ -22,9 +22,9 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void __global__ ft_paint_device(void *data)
+void __global__ ft_paint_device(t_mrt *mrt)
 {
-	t_mrt	*mrt;
+	// t_mrt	*mrt;
 	int		i;
 	int		j;
 	int		color;
@@ -33,7 +33,7 @@ void __global__ ft_paint_device(void *data)
 	int stride = blockDim.x * gridDim.x;
 	(void)index;
 	(void)stride;
-	mrt = (t_mrt *)data;
+	// mrt = (t_mrt *)data;
 	i = 0;
 	printf("\nHELLO: %d\n", index);
 	printf("mrt: %p\n", mrt);
