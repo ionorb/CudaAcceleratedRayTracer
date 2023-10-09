@@ -51,8 +51,8 @@ int	ft_free_one(t_mem *mem, void *thing)
 		after = mem->next;
 		if (mem->ptr == thing || !mem->ptr)
 		{
-			cudaFree(mem->ptr);
-			cudaFree(mem);
+			CUDA_CALL(cudaFree(mem->ptr));
+			CUDA_CALL(cudaFree(mem));
 			mem = after;
 			prev->next = after;
 		}
@@ -60,7 +60,13 @@ int	ft_free_one(t_mem *mem, void *thing)
 		mem = mem->next;
 	}
 	if (mem && mem->ptr == thing)
-		return (cudaFree(mem->ptr), cudaFree(mem), prev->next = NULL, 0);
+	{
+
+		CUDA_CALL(cudaFree(mem->ptr));
+		CUDA_CALL(cudaFree(mem));
+		prev->next = NULL;
+		return (0);
+	}
 	return (0);
 }
 

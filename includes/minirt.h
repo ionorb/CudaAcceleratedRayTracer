@@ -34,7 +34,7 @@
 # include <pthread.h>
 
 //init
-int			init_minirt(t_mrt *mrt, char **av, int ac);
+int			init_minirt(t_mrt *mrt, char *av1, int ac);
 // __device__ __host__
 // int			ft_init_mlx(t_mrt *mrt);
 __device__ __host__

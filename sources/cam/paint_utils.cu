@@ -55,7 +55,7 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt)
 	t_mrt	*dat;
 
 	i = -1;
-	cudaMallocManaged(&dat, sizeof(t_mrt));
+	CUDA_CALL(cudaMallocManaged(&dat, sizeof(t_mrt)));
 	ft_set_mrt(dat, "unset", 0, 0);
 	dat->save = mrt->save;
 	dat->addr = mrt->addr;

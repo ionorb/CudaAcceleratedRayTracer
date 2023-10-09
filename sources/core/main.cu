@@ -60,23 +60,24 @@ int	ft_save_parsing(char **av)
 
 int	main(int ac, char **av)
 {
-	t_mrt	mrt;
+	t_mrt	*mrt;
 
-	mrt.save = 1;
+	CUDA_CALL(cudaMallocManaged(&mrt, sizeof(t_mrt)));
+	mrt->save = 1;
 	if (ac != 2 && ac != 5)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
 	if (ac == 5)
 	{
-		mrt.save = 1;
+		mrt->save = 1;
 		if (ft_save_parsing(av))
 			return (1);
 	}
 	write(1, "initializing minirt... ", 23);
-	if (init_minirt(&mrt, av, ac))
+	if (init_minirt(mrt, av[1], ac))
 		return (1);
 	write(1, "done\n", 5);
-	mrt.first = 1;
-	return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
+	mrt->first = 1;
+	return (render_scene(mrt), ft_quit(EXIT_OK), 0);
 	// ft_controls(&mrt);
 	// mlx_loop(mrt.mlx);
 }

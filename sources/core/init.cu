@@ -72,19 +72,19 @@ void	ft_reinit(t_mrt *mrt)
 	ft_parse(mrt);
 }
 
-int	init_minirt(t_mrt *mrt, char **av, int ac)
+int	init_minirt(t_mrt *mrt, char *av1, int ac)
 {
 	(void)ac;
 	// if (mrt->save)
 		// ft_set_mrt(mrt, av[1], ft_atoi(av[3]), ft_atoi(av[4]));
 	// else
-	ft_set_mrt(mrt, av[1], IX, IY);
+	ft_set_mrt(mrt, av1, IX, IY);
 	// mrt->mlx = mlx_init();
 	// ft_memory(mrt, SAVE_MLX);
 	// if (!mrt->mlx)
 		// return (ft_error("Problem initializing minilibx", NULL, NULL), 0);
 	ft_parse(mrt);
-	cudaMallocManaged(&mrt->addr, sizeof(char) * IX * IY);
+	CUDA_CALL(cudaMallocManaged(&mrt->addr, sizeof(char) * IX * IY));
 	// if (ft_init_mlx(mrt))
 	// 	return (printf("Problem initializing minilibx\n"), 1);
 	return (0);

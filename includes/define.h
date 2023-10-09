@@ -185,6 +185,6 @@ INT_MIN (2147483647)"
     printf("Error at %s:%d\n",__FILE__,__LINE__); \
     printf("%s\n",cudaGetErrorString(x)); \
     system("pause"); \
-    return EXIT_FAILURE;}} while(0)
+    }} while(0)
 
 #endif
