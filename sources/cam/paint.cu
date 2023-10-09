@@ -24,24 +24,16 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 
 void __global__ ft_paint_device(t_mrt *mrt, int size)
 {
-	// int		j, i = 0;
-	int		color;
+	int	color;
+	int	index = threadIdx.x + blockIdx.x * blockDim.x;
+	int	stride = blockDim.x * gridDim.x;
 
-	int index = threadIdx.x + blockIdx.x * blockDim.x;
-	int stride = blockDim.x * gridDim.x;
-	(void)index;
-	(void)stride;
-
-	int x, y = 0;
 	for (int i = index; i < size; i += stride)
 	{
-		// ft_percentage_bar(mrt);
-		x = i % (mrt->ix);
-		y = i / mrt->ix;
+		int x = i % (mrt->ix);
+		int y = i / mrt->ix;
 		color = get_pixel_color(mrt, x + 1, y + 1);
 		my_mlx_pixel_put(mrt, x, y, color);
-		// i++;
-		// printf("ix: %d / %d\r", i, mrt->ix);
 	}
 }
 //     0  1  2  3
@@ -52,8 +44,6 @@ void __global__ ft_paint_device(t_mrt *mrt, int size)
 
 void ft_paint_host(t_mrt *mrt)
 {
-	int		i;
-	int		j;
 	int		size = mrt->ix * mrt->iy;
 	int		color;
 
@@ -72,12 +62,11 @@ void ft_paint_host(t_mrt *mrt)
 	// 	i++;
 	// 	// printf("ix: %d / %d\r", i, mrt->ix);
 	// }
-	int x, y = 0;
 	for (int i = 0; i < size; i += 1)
 	{
 		// ft_percentage_bar(mrt);
-		x = i % (mrt->ix);
-		y = i / mrt->ix;
+		int x = i % (mrt->ix);
+		int y = i / mrt->ix;
 		color = get_pixel_color(mrt, x + 1, y + 1);
 		my_mlx_pixel_put(mrt, x, y, color);
 		// i++;
@@ -101,12 +90,15 @@ void	pixel_calcul(t_mrt *mrt)
 	// init_minirt(dat, "scenes/mirror_balls.rt", 1);
 	// dat = ft_copy_mrt(mrt);
 	// printf("\nHELLO\n");
-	// CUDA_CALL(cudaMemPrefetchAsync((void *)mrt->addr, sizeof(mrt->addr), deviceId));
+	CUDA_CALL(cudaMemPrefetchAsync((void *)mrt, sizeof(mrt), deviceId));
+	CUDA_CALL(cudaMemPrefetchAsync((void *)mrt->addr, sizeof(mrt->addr), deviceId));
 	// for (int i = 0; i < 10; i++)
-		// ft_paint_device<<<threadsPerBlock, numberOfBlocks>>>(mrt, mrt->ix * mrt->iy);
+	ft_paint_device<<<threadsPerBlock, numberOfBlocks>>>(mrt, mrt->ix * mrt->iy);
 	CUDA_CALL(cudaGetLastError());
-	for (int i = 0; i < 10; i++)
-		ft_paint_host(mrt);
+	// for (int i = 0; i < 10; i++)
+	CUDA_CALL(cudaMemPrefetchAsync((void *)mrt, sizeof(mrt), cudaCpuDeviceId));
+	CUDA_CALL(cudaMemPrefetchAsync((void *)mrt->addr, sizeof(mrt->addr), cudaCpuDeviceId));
+		// ft_paint_host(mrt);
 	CUDA_CALL(cudaDeviceSynchronize());
 	// int		i;
 

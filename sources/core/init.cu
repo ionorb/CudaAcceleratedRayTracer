@@ -84,7 +84,7 @@ int	init_minirt(t_mrt *mrt, char *av1, int ac)
 	// if (!mrt->mlx)
 		// return (ft_error("Problem initializing minilibx", NULL, NULL), 0);
 	ft_parse(mrt);
-	CUDA_CALL(cudaMallocManaged(&mrt->addr, sizeof(char) * IX * IY));
+	CUDA_CALL(cudaMallocManaged(&mrt->addr, sizeof(char) * IX * IY * 4));
 	// if (ft_init_mlx(mrt))
 	// 	return (printf("Problem initializing minilibx\n"), 1);
 	return (0);
