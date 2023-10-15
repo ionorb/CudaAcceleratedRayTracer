@@ -36,7 +36,7 @@ The CUDA Accelerated Ray Tracer is a high-performance graphics rendering engine 
 <table>
   <tr>
     <td><img src="https://raw.githubusercontent.com/ionorb/CudaAcceleratedRayTracer/main/examples/mirror_balls.png" alt="Image 1" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/ionorb/CudaAcceleratedRayTracer/main/examples/mirror_balls.png" alt="Image 2" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/ionorb/CudaAcceleratedRayTracer/main/examples/multi_color.png" alt="Image 2" width="200"/></td>
     <td><img src="https://raw.githubusercontent.com/ionorb/CudaAcceleratedRayTracer/main/examples/mirror_balls.png" alt="Image 3" width="200"/></td>
   </tr>
   <tr>
